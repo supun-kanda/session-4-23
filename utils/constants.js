@@ -11,17 +11,17 @@ const
         { name: 'device5', registerId: 'registerId2', deviceId: "5" },
         { name: 'device6', registerId: 'registerId3', deviceId: "6" }
     ],
-    demmyMerchant = [
+    dummyMerchant = [
         { name: 'restaurant1', seats: 20, id: "1" },
         { name: 'restaurant2', seats: 30, id: "2" },
         { name: 'restaurant3', seats: 40, id: "3" }
     ],
-    externalSourceFile = './conts.json',
+    externalSourceFile = '../constants.json',
     rawConstants = readFileSync(externalSourceFile),
     { mongoUrl } = JSON.parse(rawConstants);
 
 module.exports = {
-    dummydevices,
-    dummyAuthors,
+    dummyDevice,
+    dummyMerchant,
     mongoUrl
 }
