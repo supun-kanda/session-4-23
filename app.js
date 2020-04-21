@@ -6,11 +6,11 @@ const express = require('express'),
     cors = require('cors');
 
 // constants
-const { mongoDbPassword } = require('./utils/constants')
+const { mongoUrl } = require('./utils/constants')
 
 const app = express();
 
-mongoose.connect(`mongodb+srv://supun:${mongoDbPassword}@cluster0-te8xm.gcp.mongodb.net/restaurants?retryWrites=true&w=majority`,
+mongoose.connect(mongoUrl,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true

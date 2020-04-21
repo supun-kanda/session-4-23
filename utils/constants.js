@@ -1,26 +1,27 @@
 // core modules
-const {readFileSync} = require('fs');
+const { readFileSync } = require('fs');
 
+// constants
 const
-    dummyBooks = [
-        { name: 'book1', genre: 'genre1', id: "1", authorId: "1" },
-        { name: 'book2', genre: 'genre2', id: "2", authorId: "2" },
-        { name: 'book3', genre: 'genre3', id: "3", authorId: "3" },
-        { name: 'book4', genre: 'genre3', id: "4", authorId: "2" },
-        { name: 'book5', genre: 'genre2', id: "5", authorId: "3" },
-        { name: 'book6', genre: 'genre3', id: "6", authorId: "3" }
+    dummyDevice = [
+        { name: 'device1', registerId: 'registerId1', deviceId: "1" },
+        { name: 'device2', registerId: 'registerId2', deviceId: "2" },
+        { name: 'device3', registerId: 'registerId3', deviceId: "3" },
+        { name: 'device4', registerId: 'registerId3', deviceId: "4" },
+        { name: 'device5', registerId: 'registerId2', deviceId: "5" },
+        { name: 'device6', registerId: 'registerId3', deviceId: "6" }
     ],
-    dummyAuthors = [
-        { name: 'author1', age: 20, id: "1" },
-        { name: 'author2', age: 30, id: "2" },
-        { name: 'author3', age: 40, id: "3" }
+    demmyMerchant = [
+        { name: 'restaurant1', seats: 20, id: "1" },
+        { name: 'restaurant2', seats: 30, id: "2" },
+        { name: 'restaurant3', seats: 40, id: "3" }
     ],
-    dbName = 'restaurants',
-    externalSourceFile = './conts.json'
-    readFileSync('')
+    externalSourceFile = './conts.json',
+    rawConstants = readFileSync(externalSourceFile),
+    { mongoUrl } = JSON.parse(rawConstants);
 
 module.exports = {
-    dummyBooks,
+    dummydevices,
     dummyAuthors,
-    mongoDbPassword
+    mongoUrl
 }
