@@ -16,7 +16,7 @@ const
         { name: 'restaurant2', seats: 30, id: "2" },
         { name: 'restaurant3', seats: 40, id: "3" }
     ],
-    externalSourceFile = '../constants.json',
+    externalSourceFile = 'constants.json',
     rawConstants = readFileSync(externalSourceFile),
     { mongoUrl } = JSON.parse(rawConstants);
 

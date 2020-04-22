@@ -14,6 +14,7 @@
     "express-graphql": "^0.9.0",
     "fs": "0.0.1-security",
     "graphql": "^15.0.0",
+    "graphql-voyager": "^1.0.0-rc.29",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.9"
   },

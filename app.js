@@ -1,9 +1,14 @@
 // core modules
 const express = require('express'),
     graphqlHTTP = require('express-graphql'),
-    schema = require('./schema/schema'),
     mongoose = require('mongoose'),
-    cors = require('cors');
+    cors = require('cors'),
+    voyagerMiddleware = require('graphql-voyager/middleware').express;
+
+
+// modules
+const schema = require('./schema/schema'),
+    restRouter = require('./routers/restRouter');
 
 // constants
 const { mongoUrl } = require('./utils/constants')
@@ -23,12 +28,19 @@ mongoose.connection.once('open', () => {
 // allow cors
 app.use(cors());
 
+// graphql router
 app.use('/graphql', graphqlHTTP(
     {
         schema,
-        graphiql: true
+        graphiql: true //set the graphiql front end
     }
 ))
+
+// enable voyager middleware
+app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }));
+
+// rest router
+app.use('/rest', restRouter)
 
 app.listen(4000, () => {
     console.log('Listening on port 4000');

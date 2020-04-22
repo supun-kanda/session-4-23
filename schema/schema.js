@@ -8,7 +8,8 @@ const graphql = require('graphql'),
         GraphQLID,
         GraphQLInt,
         GraphQLList,
-        GraphQLNonNull
+        GraphQLNonNull,
+        GraphQLFloat
     } = graphql;
 
 // models
@@ -37,9 +38,12 @@ const
         fields: () => ({
             id: { type: GraphQLID },
             merchantName: { type: GraphQLString },
+            location: { type: GraphQLString },
+            timeZone: { type: GraphQLString },
+            owner: { type: GraphQLString },
+            rating: { type: GraphQLFloat },
             devices: {
                 type: new GraphQLList(DeviceType),
-                args: { id: { type: GraphQLID } },
                 resolve(parent, args) {
                     return Device.find({ merchantId: parent.id })
                 }
@@ -47,14 +51,26 @@ const
         })
     });
 
+// queries
 const RootQuery = new GraphQLObjectType({
-    name: 'RootQueryType',
+    name: 'Queries',
     fields: {
         device: {
             type: DeviceType,
-            args: { deviceId: { type: GraphQLID } },
+            args: {
+                deviceId: { type: GraphQLID },
+                merchantId: { type: GraphQLString },
+                registerNo: { type: GraphQLInt }
+            },
             resolve(parent, args) {
-                return Device.findById(args.deviceId)
+                const queryFeilds = ['deviceId', 'merchantId', 'registerNo'],
+                    query = {};
+                queryFeilds.forEach(field => {
+                    if (args[field]) {
+                        query[field] = args[field];
+                    }
+                });
+                return Device.findOne(query);
             }
         },
         merchant: {
@@ -79,6 +95,7 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+// mutations
 const Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
